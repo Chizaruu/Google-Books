@@ -1,24 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Created to use Google Book's API to fetch and process requests into a visually pleasing but ordered state. ">
-    <meta name="author" content="Abdul-Kadir Coskun">
-    <link rel="shortcut icon" href="images/cat.jpg">
-    <title>Google Books UI</title>
-</head>
-
-<body>
-    <header>
-        <h1>Google Books UI</h1>
-        <p>Created to use Google Book's API to fetch and process requests into a visually pleasing but
-            ordered
-            state.
-        </p>
-    </header>
-</body>
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Created to use Google Book's API to fetch and process requests into a visually pleasing but ordered state. "
+        />
+        <meta name="author" content="Abdul-Kadir Coskun" />
+        <link rel="shortcut icon" href="images/cat.jpg" />
+        <link rel="stylesheet" href="css/style.css" />
+        <script src="js/index.js" type="module" defer></script>
+        <title>Google Books</title>
+    </head>
+    <body>
+        <header class="header">
+            <h1>Google Books</h1>
+        </header>
+        <main class="search">
+            <h3>What are you looking for?</h3>
+            <form class="search__form" id="form">
+                <input
+                    class="search__form__input"
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="Search for books"
+                    value=""
+                />
+                <button type="submit">Search</button>
+            </form>
+            <div class="search__grid">
+                <div class="search__grid__item">
+                    <div class="search__grid__item__title">
+                        <h3>Search Results</h3>
+                    </div>
+                    <div class="search__grid__item__content">
+                        <div class="search__grid__item__content__results">
+                            <div class="search__grid__item__content__results__list">
+                                <ul id="results">
+                                    <li class="search__grid__item__content__results__list__item">
+                                        <div class="search__grid__item__content__results__list__item__image">
+                                            <img
+                                                src="images/placeholder.svg"
+                                                alt="placeholder"
+                                                class="search__grid__item__content__results__list__item__image__img"
+                                            />
+                                        <div class="search__grid__item__content__results__list__item__title">
+                                            <h4>Title</h4>
+                                        </div>
+                                        <div class="search__grid__item__content__results__list__item__author">
+                                            <h4>Author</h4>
+                                        </div>
+                                        <div class="search__grid__item__content__results__list__item__description">
+                                            <h4>Description</h4>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </main>
+        <footer>
+            Made with <span title="~latvia~">&hearts;</span> by Abdul-Kadir
+            Coskun
+        </footer>
+    </body>
 </html>
