@@ -2,31 +2,36 @@ const form = document.querySelector("#form");
 const searchInput = document.querySelector("#search");
 const results = document.querySelector("#results");
 
-const createResult = (image, title, author, description) => {
-    const result = document.createElement("li");
-    result.classList.add("result");
+const makeElement = (element, className, text, parent) => {
+    const el = document.createElement(element);
+    el.classList.add(className);
+    if (text) el.textContent = text;
+    if (parent) parent.appendChild(el);
+    return el;
+};
 
-    const img = document.createElement("img");
-    img.classList.add("result__img");
+const createResult = (image, title, authors, description) => {
+    //Create the result container
+    const result = makeElement("div", "result");
+    //Create the image
+    const img = makeElement("img", "result__img", "", result);
     img.src = image;
-    result.appendChild(img);
-
-    const title = document.createElement("h4");
-    title.classList.add("result__title");
-    title.textContent = title;
-    result.appendChild(title);
-
-    const author = document.createElement("p");
-    author.classList.add("result__author");
-    author.textContent = author;
-    result.appendChild(author);
-
-    const desc = document.createElement("p");
-    desc.classList.add("result__desc");
-    desc.textContent = description;
-    result.appendChild(desc);
-
+    //Make a div for the title and authors
+    makeElement("h4", "result__title", title, result);
+    //Make authors list
+    makeElement("p", "result__authors", authors, result);
+    //Make description
+    makeElement("p", "result__description", description, result);
     return result;
 };
 
-export { form, searchInput, createResult, results };
+const showResults = (resultsList) => {
+    if (resultsList.length === 0)
+        return (results.innerHTML = `<p class="no-results">No results found</p>`);
+
+    resultsList.map((result) => results.appendChild(result));
+};
+
+const clearResults = () => (results.innerHTML = "");
+
+export { form, searchInput, createResult, showResults, clearResults };
