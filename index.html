@@ -23,44 +23,15 @@
                 <input
                     class="search__form__input"
                     type="text"
-                    name="search"
-                    id="search"
+                    name="input"
+                    id="input"
                     placeholder="Search for books"
                     value=""
                 />
                 <button type="submit">Search</button>
             </form>
-            <div class="search__grid">
-                <div class="search__grid__item">
-                    <div class="search__grid__item__title">
-                        <h3>Search Results</h3>
-                    </div>
-                    <div class="search__grid__item__content">
-                        <div class="search__grid__item__content__results">
-                            <div class="search__grid__item__content__results__list">
-                                <ul id="results">
-                                    <li class="search__grid__item__content__results__list__item">
-                                        <div class="search__grid__item__content__results__list__item__image">
-                                            <img
-                                                src="images/placeholder.svg"
-                                                alt="placeholder"
-                                                class="search__grid__item__content__results__list__item__image__img"
-                                            />
-                                        <div class="search__grid__item__content__results__list__item__title">
-                                            <h4>Title</h4>
-                                        </div>
-                                        <div class="search__grid__item__content__results__list__item__author">
-                                            <h4>Author</h4>
-                                        </div>
-                                        <div class="search__grid__item__content__results__list__item__description">
-                                            <h4>Description</h4>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <h3 class="search__title">Search Results</h3>
+            <section class="search__grid" id="results"></section>
         </main>
         <footer>
             Made with <span title="~latvia~">&hearts;</span> by Abdul-Kadir

@@ -1,4 +1,6 @@
-import { form, createResult, results } from "./dom.js";
+import { form, createResult, showResults, clearResults } from "./dom.js";
+
+let pageIndex = 0;
 
 const getData = async (searchTerms) => {
     const response = await fetch(
@@ -10,34 +12,24 @@ const getData = async (searchTerms) => {
 
 const requestHandler = async (e) => {
     e.preventDefault();
+    clearResults();
     const formData = new FormData(form);
-    const searchTerms = formData.get("search");
-    const data = await getData(searchTerms);
-
-    if (data.items.length === 0) {
-        results.innerHTML = "";
-        const noResults = document.createElement("p");
-        noResults.classList.add("no-results");
-        noResults.textContent = "No results found";
-        results.appendChild(noResults);
-        return;
-    }
-
-    results.innerHTML = data.items.length;
-
-    const resultsList = data.items.map((item) => {
-        const {
-            volumeInfo: {
-                imageLinks: { thumbnail },
-                title,
-                authors,
-                description,
-            },
-        } = item;
-        createResult(thumbnail, title, authors, description);
-    });
-
-    resultsList.map((result) => results.appendChild(result));
+    const data = await getData(
+        `${formData.get("input")}&startIndex=${pageIndex}`
+    );
+    const resultsList = data.items.map((item) =>
+        createResult(
+            item.volumeInfo.imageLinks
+                ? item.volumeInfo.imageLinks.thumbnail
+                : "../images/placeholder.svg",
+            item.volumeInfo.title ? item.volumeInfo.title : "No title",
+            item.volumeInfo.authors ? item.volumeInfo.authors[0] : "No author",
+            item.volumeInfo.description
+                ? item.volumeInfo.description
+                : "No description"
+        )
+    );
+    showResults(resultsList);
 };
 
 export { requestHandler };

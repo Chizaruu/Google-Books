@@ -145,6 +145,16 @@ button:hover {
     background-color: #6acf86;
   }
 }
+.search__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.search__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 10px;
+}
 
 footer {
   padding: 15px;
