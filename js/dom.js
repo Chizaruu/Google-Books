@@ -1,6 +1,8 @@
 const form = document.querySelector("#form");
 const searchInput = document.querySelector("#search");
 const results = document.querySelector("#results");
+const next = document.querySelector("#next");
+const prev = document.querySelector("#prev");
 
 const makeElement = (element, className, text, parent) => {
     const el = document.createElement(element);
@@ -34,4 +36,12 @@ const showResults = (resultsList) => {
 
 const clearResults = () => (results.innerHTML = "");
 
-export { form, searchInput, createResult, showResults, clearResults };
+export {
+    form,
+    searchInput,
+    next,
+    prev,
+    createResult,
+    showResults,
+    clearResults,
+};
