@@ -10,26 +10,45 @@ const getData = async (searchTerms) => {
     return data;
 };
 
+const setPageIndex = (id) => {
+    switch (id) {
+        case "next":
+            pageIndex += 10;
+            break;
+        case "prev":
+            if (pageIndex > 0) pageIndex -= 10;
+            break;
+        default:
+            pageIndex = 0;
+    }
+};
+
+const buildResults = (books) => books.items.map((book) => {
+    const { volumeInfo } = book;
+    const { imageLinks, title, authors, description } = volumeInfo;
+
+    return createResult(
+        imageLinks && imageLinks.thumbnail ? imageLinks.thumbnail : "../images/placeholder.svg",
+        title ? title : "No title",
+        authors ? authors.join(", ") : "No authors",
+        description ? description : "No description"
+    );
+});
+
 const requestHandler = async (e) => {
     e.preventDefault();
     clearResults();
+    setPageIndex(e.target.id);
+
     const formData = new FormData(form);
-    const data = await getData(
+    const bookList = await getData(
         `${formData.get("input")}&startIndex=${pageIndex}`
     );
-    const resultsList = data.items.map((item) =>
-        createResult(
-            item.volumeInfo.imageLinks
-                ? item.volumeInfo.imageLinks.thumbnail
-                : "../images/placeholder.svg",
-            item.volumeInfo.title ? item.volumeInfo.title : "No title",
-            item.volumeInfo.authors ? item.volumeInfo.authors[0] : "No author",
-            item.volumeInfo.description
-                ? item.volumeInfo.description
-                : "No description"
-        )
-    );
-    showResults(resultsList);
+
+    if (bookList.items)
+        return showResults(buildResults(bookList));
+
+    return showResults([]);
 };
 
 export { requestHandler };
