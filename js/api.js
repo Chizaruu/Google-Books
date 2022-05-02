@@ -28,7 +28,7 @@ const buildResults = (books) => books.items.map((book) => {
     const { imageLinks, title, authors, description } = volumeInfo;
 
     return createResult(
-        imageLinks && imageLinks.thumbnail ? imageLinks.thumbnail : "../images/placeholder.svg",
+        imageLinks && imageLinks.thumbnail ? imageLinks.thumbnail : "./images/placeholder.svg",
         title ? title : "No title",
         authors ? authors.join(", ") : "No authors",
         description ? description : "No description"
