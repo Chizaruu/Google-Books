@@ -2,14 +2,6 @@ import { form, createResult, showResults, clearResults } from "./dom.js";
 
 let pageIndex = 0;
 
-const getData = async (searchTerms) => {
-    const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}`
-    );
-    const data = await response.json();
-    return data;
-};
-
 const setPageIndex = (id) => {
     switch (id) {
         case "next":
@@ -21,6 +13,14 @@ const setPageIndex = (id) => {
         default:
             pageIndex = 0;
     }
+};
+
+const getData = async (searchTerms) => {
+    const response = await fetch(
+        `https://www.googleapis.com/books/v1/volumes?q=${searchTerms}`
+    );
+    const data = await response.json();
+    return data;
 };
 
 const buildResults = (books) => books.items.map((book) => {
