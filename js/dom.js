@@ -32,7 +32,15 @@ const createBook = (image, title, authors, description) => {
     
     makeElement("h4", "result__title", title, result);
     makeElement("p", "result__authors", authors, result);
+
+    // If description is too long, truncate it
+    if (description.length > 200) {
+        let desc = description.substring(0, 200);
+        desc = desc + "...";
+        makeElement("p", "result__description", desc, result);
+    } else {
     makeElement("p", "result__description", description, result);
+    }
     return result;
 };
 
