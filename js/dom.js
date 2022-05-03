@@ -13,16 +13,13 @@ const makeElement = (element, className, text, parent) => {
 };
 
 const createResult = (image, title, authors, description) => {
-    //Create the result container
     const result = makeElement("div", "result");
-    //Create the image
     const img = makeElement("img", "result__img", "", result);
+
     img.src = image;
-    //Make a div for the title and authors
+    
     makeElement("h4", "result__title", title, result);
-    //Make authors list
     makeElement("p", "result__authors", authors, result);
-    //Make description
     makeElement("p", "result__description", description, result);
     return result;
 };
