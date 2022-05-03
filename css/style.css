@@ -145,12 +145,18 @@ button:hover {
     background-color: #6acf86;
   }
 }
-.search__title {
+.search__results {
+  display: none;
+}
+.search__results--show {
+  display: block;
+}
+.search__results__title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
 }
-.search__grid {
+.search__results__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 10px;

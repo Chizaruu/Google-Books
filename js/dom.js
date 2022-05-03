@@ -1,8 +1,9 @@
 const form = document.querySelector("#form");
 const searchInput = document.querySelector("#search");
-const results = document.querySelector("#results");
+const books = document.querySelector("#books");
 const next = document.querySelector("#next");
 const prev = document.querySelector("#prev");
+const searchList= document.querySelector(".search__results");
 
 const makeElement = (element, className, text, parent) => {
     const el = document.createElement(element);
@@ -12,7 +13,7 @@ const makeElement = (element, className, text, parent) => {
     return el;
 };
 
-const createResult = (image, title, authors, description) => {
+const createBook = (image, title, authors, description) => {
     const result = makeElement("div", "result");
     const img = makeElement("img", "result__img", "", result);
 
@@ -24,21 +25,22 @@ const createResult = (image, title, authors, description) => {
     return result;
 };
 
-const showResults = (resultsList) => {
-    if (resultsList.length === 0)
-        return (results.innerHTML = `<p class="no-results">No results found</p>`);
+const showBooks = (bookList) => {
+    if (bookList.length === 0)
+        return (books.innerHTML = `<p class="no-books">No books found</p>`);
 
-    resultsList.map((result) => results.appendChild(result));
+    bookList.map((result) => books.appendChild(result));
+    searchList.classList.add("search__results--show");
 };
 
-const clearResults = () => (results.innerHTML = "");
+const clearBooks = () => (books.innerHTML = "");
 
 export {
     form,
     searchInput,
     next,
     prev,
-    createResult,
-    showResults,
-    clearResults,
+    createBook,
+    showBooks,
+    clearBooks,
 };

@@ -1,4 +1,4 @@
-import { form, createResult, showResults, clearResults } from "./dom.js";
+import { form, createBook, showBooks, clearBooks } from "./dom.js";
 
 let pageIndex = 0;
 
@@ -23,11 +23,11 @@ const getData = async (searchTerms) => {
     return data;
 };
 
-const buildResults = (books) => books.items.map((book) => {
+const buildBooks = (books) => books.items.map((book) => {
     const { volumeInfo } = book;
     const { imageLinks, title, authors, description } = volumeInfo;
 
-    return createResult(
+    return createBook(
         imageLinks && imageLinks.thumbnail ? imageLinks.thumbnail : "./images/placeholder.svg",
         title ? title : "No title",
         authors ? authors.join(", ") : "No authors",
@@ -37,7 +37,7 @@ const buildResults = (books) => books.items.map((book) => {
 
 const requestHandler = async (e) => {
     e.preventDefault();
-    clearResults();
+    clearBooks();
     setPageIndex(e.target.id);
 
     const formData = new FormData(form);
@@ -46,9 +46,9 @@ const requestHandler = async (e) => {
     );
 
     if (bookList.items)
-        return showResults(buildResults(bookList));
+        return showBooks(buildBooks(bookList));
 
-    return showResults([]);
+    return showBooks([]);
 };
 
 export { requestHandler };
