@@ -1,6 +1,7 @@
 import { form, createBook, showBooks, clearBooks } from "./dom.js";
 
 let pageIndex = 0;
+let totalItems = 0;
 
 const setPageIndex = (id) => {
     switch (id) {
@@ -38,12 +39,13 @@ const buildBooks = (books) => books.items.map((book) => {
 const requestHandler = async (e) => {
     e.preventDefault();
     clearBooks();
-    setPageIndex(e.target.id);
+    setPageIndex(e.target.classList[0]);
 
     const formData = new FormData(form);
     const bookList = await getData(
         `${formData.get("input")}&startIndex=${pageIndex}`
     );
+    totalItems = bookList.totalItems;
 
     if (bookList.items)
         return showBooks(buildBooks(bookList));
@@ -51,4 +53,4 @@ const requestHandler = async (e) => {
     return showBooks([]);
 };
 
-export { requestHandler };
+export { requestHandler, pageIndex, totalItems };

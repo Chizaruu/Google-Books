@@ -1,8 +1,10 @@
+import { pageIndex, totalItems } from "./api.js";
+
 const form = document.querySelector("#form");
 const searchInput = document.querySelector("#search");
 const books = document.querySelector("#books");
-const next = document.querySelector("#next");
-const prev = document.querySelector("#prev");
+const next = document.querySelectorAll(".next");
+const prev = document.querySelectorAll(".prev");
 const searchList= document.querySelector(".search__results");
 
 const makeElement = (element, className, text, parent) => {
@@ -12,6 +14,15 @@ const makeElement = (element, className, text, parent) => {
     if (parent) parent.appendChild(el);
     return el;
 };
+
+const setButtonStates = () => {
+    for (const btn of prev) {
+        pageIndex === 0 ? btn.classList.add("prev--hide") : btn.classList.remove("prev--hide");
+    }
+    for (const btn of next) {
+        pageIndex + 10 >= totalItems ? btn.classList.add("next--hide") : btn.classList.remove("next--hide");
+    }
+}
 
 const createBook = (image, title, authors, description) => {
     const result = makeElement("div", "result");
@@ -31,6 +42,7 @@ const showBooks = (bookList) => {
 
     bookList.map((result) => books.appendChild(result));
     searchList.classList.add("search__results--show");
+    setButtonStates();
 };
 
 const clearBooks = () => (books.innerHTML = "");

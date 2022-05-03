@@ -113,6 +113,14 @@ button:hover {
   }
 }
 
+.next--hide {
+  display: none;
+}
+
+.prev--hide {
+  display: none;
+}
+
 .header {
   display: flex;
   justify-content: center;
