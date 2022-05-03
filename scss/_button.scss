@@ -18,3 +18,15 @@ button {
         background-color: map-get(p.$dark-theme-colors, tertiary);
     }
 }
+
+.next {
+    &--hide {
+        display: none;
+    }
+}
+
+.prev{
+    &--hide {
+        display: none;
+    }
+}
